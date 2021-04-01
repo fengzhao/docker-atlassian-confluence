@@ -50,6 +50,7 @@ COPY "atlassian-agent.jar" /opt/atlassian/confluence/
 # 设置启动加载代理包
 RUN echo 'export CATALINA_OPTS="-javaagent:/opt/atlassian/confluence/atlassian-agent.jar ${CATALINA_OPTS}"' >> /opt/atlassian/confluence/bin/setenv.sh
 
+#  java -jar atlassian-agent.jar  -d -m test@gmail.com -o qhdata -p conf   -s  BUMM-FX3Q-88WI-CUOB
 
 
 
