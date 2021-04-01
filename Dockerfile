@@ -1,4 +1,4 @@
-FROM openjdk:8-alpine
+FROM ghcr.io/fengzhao/openjdk:8-jdk-alpine-chinese-timezone
 
 # Setup useful environment variables
 ENV CONF_HOME     /var/atlassian/confluence
