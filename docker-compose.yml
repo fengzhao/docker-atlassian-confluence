@@ -1,0 +1,50 @@
+version: '3.4'
+services:
+  jira:
+    # 国内镜像  image: registry.cn-shenzhen.aliyuncs.com/fengzhao/jira-software:latest 
+    image: ghcr.io/fengzhao/jira-software:latest
+    user: root
+    container_name: jira-software
+    ports:
+      - "8080:8080"
+    # restart: always
+    environment:
+      # 反代域名
+      - X_PROXY_NAME:jira.xxxx.com
+      # 反代端口
+      - X_PROXY_PORT:80
+      # 反代访问协议
+      - X_PROXY_SCHEME:http
+      
+      - CATALINA_OPTS='-Xms4096m -Xmx8192m'  
+    networks:
+      - jira
+    depends_on:
+      - db
+    volumes:
+      - /data/jira/jira-data-bak:/var/atlassian/application-data/jira
+      - /data/jira/jira-data:/var/atlassian/jira
+
+  db:
+    image: mysql:5.7.31
+    container_name: jira-db
+    networks:
+      - jira
+    ports:
+      - "3308:3306"
+    # restart: always
+    expose:
+      - '3306' 
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=qhdata
+      - MYSQL_USER=qhdata
+      - MYSQL_PASSWORD=password
+      - TZ=Asia/Shanghai
+    volumes:
+      -  /usr/local/mysql-jira/conf/my.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+      -  /usr/local/mysql-jira/data:/var/lib/mysql
+
+networks:
+   jira:
+      external: true
