@@ -5,6 +5,8 @@ ENV CONF_HOME     /var/atlassian/confluence
 ENV CONF_INSTALL  /opt/atlassian/confluence
 ENV CONF_VERSION  7.9.3
 
+# https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.19.0.tar.gz
+
 ENV JAVA_CACERTS  $JAVA_HOME/jre/lib/security/cacerts
 ENV CERTIFICATE   $CONF_HOME/certificate
 
