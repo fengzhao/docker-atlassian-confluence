@@ -37,9 +37,7 @@ Confluence内置了大量的模板，可辅助用于项目工作的各个环节�
 
 ```shell
 
-mkdir -p /usr/local/mysql-confluence/{data,conf}
-mkdir -p /data/confluence/{confluence,logs}
-
+mkdir -p /usr/local/mysql-confluence/{data,conf}mkdir  /data/confluence/{confluence,logs}
 
 
 # 进入docker
